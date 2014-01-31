@@ -14,11 +14,11 @@
             $message = "Yes, I've found ". $toPost. ".So, who's yours?";             
             $imageSource = $_GET['photo'];
             $params = array(
-                'access_token' => $facebook->getAccessToken(),
+                //'access_token' => $facebook->getAccessToken(),
                 'source' => "@".$imageSource,
-                'place' => '155021662189',
-                'tags' => array($_SESSION['uid2']),
-                'message' => ''
+                //'place' => '155021662189',
+                //'tags' => array($_SESSION['uid2']),
+                'message' => $message
             );
             $postId = $facebook->api( '/me/photos', 'POST', $params);
             print_r($postId);
