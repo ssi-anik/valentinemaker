@@ -89,7 +89,7 @@
                     imagedestroy($originalImage);
                     imagedestroy($u1);
                     imagedestroy($u2);
-                    
+
                 }
 
             } else{
