@@ -70,7 +70,7 @@
             if(imagecopymerge($originalImage, $u1, 40, 65, 0, 0, imagesx($u1), imagesy($u1), 100) && imagecopymerge($originalImage,$u2, 777, 235,0, 0, imagesx($u2), imagesy($u2), 100)){
                 $n1 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?name=".$_SESSION['uf1']."&pos=1");
                 $n2 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?name=".$_SESSION['uf2']."&pos=2");
-                if(imagecopymerge($originalImage, $n1, 40, 20, 0, 0, imagesx($n1), imagesy($n1), 100) && imagecopymerge($originalImage,$n2, 497, 360, 0, 0, imagesx($n2), imagesy($n2), 100)){
+                if(imagecopymerge($originalImage, $n1, 40, 17, 0, 0, imagesx($n1), imagesy($n1), 100) && imagecopymerge($originalImage,$n2, 497, 360, 0, 0, imagesx($n2), imagesy($n2), 100)){
                     // random key generator
                     $rand = randomKeyGenerator(5);
                     // image name to be stored in
