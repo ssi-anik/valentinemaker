@@ -1,7 +1,5 @@
 <?php
     session_start();
-    $path = 'dummy.png';
-    $originalImage = imagecreatefrompng($path);
     $a = array_merge(range(0,9),range('A','Z'),range('a','z'));
     function randomKeyGenerator($length){
         $stringToBeReturned = "";
@@ -12,7 +10,7 @@
         }
         return $stringToBeReturned; 
     }
-    function positionText($text,$who){
+    function positionText(&$originalImage, $text, $who){
         $textred = 102;
         $textgreen = 153;
         $textblue = 153;
@@ -21,7 +19,7 @@
         $font = "Chewy.ttf";
 
         ### Declare image's text color
-        $fontcolor = imagecolorallocate( global $originalImage, $textred,$textgreen,$textblue);
+        $fontcolor = imagecolorallocate( $originalImage, $textred,$textgreen,$textblue);
         ### Get exact dimensions of text string
         $box = @imageTTFBbox($fontsize,$fontangle,$font,$text);
         ### Get width of text from dimensions
@@ -30,9 +28,9 @@
         $textheight = abs($box[5] - $box[1]);
         ###place text 
         if($who == 1){
-            imagettftext ( global $originalImage, $fontsize, $fontangle, 45, 50, $fontcolor, $font, $text );
+            imagettftext ( $originalImage, $fontsize, $fontangle, 45, 50, $fontcolor, $font, $text );
         } else{
-            imagettftext ( global $originalImage, $fontsize, $fontangle, 855 - $textwidth, 390, $fontcolor, $font, $text );
+            imagettftext ( $originalImage, $fontsize, $fontangle, 855 - $textwidth, 390, $fontcolor, $font, $text );
         }
     }
     require 'php-sdk/facebook.php';
@@ -53,11 +51,13 @@
         $data = json_decode($requests);
         $b = $data->picture->data->url;
         $_SESSION['uf2'] = $data->first_name;
+        $path = 'dummy.png';
+        $originalImage = imagecreatefrompng($path);
         $u1 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?l=".$a);
         $u2 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?l=".$b);
         if(imagecopymerge($originalImage, $u1, 45, 70, 0, 0, imagesx($u1), imagesy($u1), 100) && imagecopymerge($originalImage,$u2, 715, 260,0, 0, imagesx($u2), imagesy($u2), 100)){
-            positionText($_SESSION['uf1'], 1);
-            positionText($_SESSION['uf2'], 2);
+            positionText($originalImage, $_SESSION['uf1'], 1);
+            positionText($originalImage, $_SESSION['uf2'], 2);
             $rand = randomKeyGenerator(5);
             $img_name = "users/".$_SESSION['uid1']."_".$rand.".png";
             imagepng($originalImage,$img_name);
@@ -66,7 +66,7 @@
 
         } else{
             echo "Can't copy merge";
-            imagedestroy($originalImage)
+            imagedestroy($originalImage);
         }
     }
 
