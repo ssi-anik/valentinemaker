@@ -20,8 +20,8 @@ $("#image").load(function(){
 });
 
 function successFn(result){
-    $("#image").attr("src",result);
-    $("#publish").show();
+    //$("#image").attr("src",result);
+    //$("#publish").show();
 }
 function errorFn(xhr, status, statusErr){
     console.log(xhr + "\n" + status + "\n" + statusErr);
