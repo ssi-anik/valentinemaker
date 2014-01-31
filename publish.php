@@ -7,12 +7,7 @@
         )
     );
     $user = $facebook->getUser();
-    var_dump($user);
-    echo "<br/>";
-    var_dump($_GET['photo']);
-    echo "<br/>";
-    var_dump(strpos($_SESSION['uid1'], $_GET['photo']));
-    if($user && isset($_GET['photo']) && strpos($_SESSION['uid1'], $_GET['photo'])!==False){
+    if($user && isset($_GET['photo']) && strpos( $_GET['photo'],$_SESSION['uid1'])!==False){
         try{
             $facebook->setFileUploadSupport(true);
             $toPost = $_SESSION['sex'] == "male" ? "her" : "him";
