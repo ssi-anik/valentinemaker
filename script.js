@@ -33,7 +33,9 @@ $("#publish").on("click",function(){
         dataType: "text",
         type: "GET",
         success: function(result){
-            console.log(result);
+            if(result == "ok"){
+                $("#publish").text("Published").prop("disabled",true);
+            }
         },
         error: function(xhr, status, statusErr){
             console.log(xhr + "\n" + status + "\n" + statusErr);

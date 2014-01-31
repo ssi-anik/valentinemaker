@@ -17,12 +17,10 @@
             $params = array(
                 'access_token' => $facebook->getAccessToken(),
                 'source' => "@".$imageSource,
-                'place' => '155021662189',
-                'tags' => $tags,
                 'message' => $message
             );
             $postId = $facebook->api( '/me/photos', 'POST', $params);
-            print_r($postId);
+            echo "ok";
         } catch(FacebookApiException $e){
             print_r($e);
         }
