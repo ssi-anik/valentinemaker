@@ -1,0 +1,52 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-weight: normal;
+    font-family: Georgia,serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+.container{
+    width: 90%;
+    margin: 0px auto;
+}
+
+.header{
+    margin-top: 20px;
+    min-height: 110px;
+}
+.imageholder{
+    text-align: center;
+
+}
+
+.imageholder img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a.btn{
+    width: 125px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #4B4B4B;
+    color: #C2A2EE;
+    border: 2px solid #A5C7FE;
+    font-family: Courier New;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.show{
+    padding: 10px;
+    background-color: rgba(60, 9, 88, 0.6);
+    font-size: 20px;
+    color: #1ACACA;
+}
