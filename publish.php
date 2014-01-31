@@ -52,6 +52,8 @@
         print_r($e);
         }*/
 
+    } else{
+        echo "not set";
     }
 
 ?>
