@@ -9,16 +9,16 @@
         global $a;
         //array length;
         $arrayLength = count($a)-1;
-        
+
         for($i = 1; $i <= $length; $i++){
             $stringToBeReturned .= $a[rand(0,$arrayLength)];
         }
-        
+
         return $stringToBeReturned; 
     }
-    
+
     // the function adds the text to the image
-    function positionText(&$originalImage, $text, $who){
+    /*function positionText(&$originalImage, $text, $who){
         $textred = 102;
         $textgreen = 153;
         $textblue = 153;
@@ -40,7 +40,7 @@
         } else{
             imagettftext ( $originalImage, $fontsize, $fontangle, 855 - $textwidth, 390, $fontcolor, $font, $text );
         }
-    }
+    }*/
     require 'php-sdk/facebook.php';
     $facebook = new Facebook( array (
         'appId' => '210621112477292',
@@ -77,12 +77,12 @@
             // get jpeg images converted to png
             $u1 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?l=".$a);
             $u2 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?l=".$b);
-            
+
             if(imagecopymerge($originalImage, $u1, 45, 70, 0, 0, imagesx($u1), imagesy($u1), 100) && imagecopymerge($originalImage,$u2, 715, 260,0, 0, imagesx($u2), imagesy($u2), 100)){
                 // add text first name to the image
-                positionText($originalImage, $_SESSION['uf1'], 1);
+                //positionText($originalImage, $_SESSION['uf1'], 1);
                 // add text second user name to the
-                positionText($originalImage, $_SESSION['uf2'], 2);
+                //positionText($originalImage, $_SESSION['uf2'], 2);
                 // random key generator
                 $rand = randomKeyGenerator(5);
                 // image name to be stored in
@@ -93,7 +93,7 @@
                 imagedestroy($originalImage);
                 imagedestroy($u1);
                 imagedestroy($u2);
-                
+
                 //echo the image name to the ajax
                 echo $img_name;
 
