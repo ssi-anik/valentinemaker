@@ -86,6 +86,10 @@
                     echo $img_name;
                 } else{
                     echo "image creation with text error";
+                    imagedestroy($originalImage);
+                    imagedestroy($u1);
+                    imagedestroy($u2);
+                    
                 }
 
             } else{
