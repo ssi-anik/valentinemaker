@@ -32,10 +32,10 @@
         $u2 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?l=".$b);
         if(imagecopymerge($originalImage, $u1, 45, 70, 0, 0, imagesx($u1), imagesy($u1), 100) && imagecopymerge($originalImage,$u2, 715, 260,0, 0, imagesx($u2), imagesy($u2), 100)){
             $rand = randomKeyGenerator(5);
-            $img_name = "users/".$_SESSION['uid1']."_".$rand;
+            $img_name = "users/".$_SESSION['uid1']."_".$rand.".png";
             imagepng($originalImage,$img_name);
             imagedestroy($originalImage);
-            echo $img_name.".png";
+            echo $img_name;
 
         } else{
             echo "Can't copy merge";
