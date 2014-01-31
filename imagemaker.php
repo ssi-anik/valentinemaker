@@ -1,12 +1,6 @@
 <?php
     session_start();
-    //font init
-    $textred = 102;
-    $textgreen = 153;
-    $textblue = 153;
-    $fontsize = "30";
-    $fontangle = "0";
-    $font = "Chewy.ttf";
+
     // add from 0 to 9, A to Z, and a to z
     $a = array_merge(range(0,9),range('A','Z'),range('a','z'));
     function randomKeyGenerator($length){
@@ -24,30 +18,6 @@
         return $stringToBeReturned; 
     }
 
-    // the function adds the text to the image
-    /*function positionText(&$originalImage, $text, $who){
-    $textred = 102;
-    $textgreen = 153;
-    $textblue = 153;
-    $fontsize = "30";
-    $fontangle = "0";
-    $font = "Chewy.ttf";
-
-    ### Declare image's text color
-    $fontcolor = imagecolorallocate( $originalImage, $textred,$textgreen,$textblue);
-    ### Get exact dimensions of text string
-    $box = @imageTTFBbox($fontsize,$fontangle,$font,$text);
-    ### Get width of text from dimensions
-    $textwidth = abs($box[4] - $box[0]);
-    ### Get height of text from dimensions
-    $textheight = abs($box[5] - $box[1]);
-    ###place text 
-    if($who == 1){
-    imagettftext ( $originalImage, $fontsize, $fontangle, 45, 50, $fontcolor, $font, $text );
-    } else{
-    imagettftext ( $originalImage, $fontsize, $fontangle, 855 - $textwidth, 390, $fontcolor, $font, $text );
-    }
-    }*/
     require 'php-sdk/facebook.php';
     $facebook = new Facebook( array (
         'appId' => '210621112477292',
@@ -55,6 +25,7 @@
         )
     );
     $user = $facebook->getUser();
+
     if($user && isset($_SESSION['uid1']) && isset($_SESSION['uid2'])){
         try{
             $request_url ="https://graph.facebook.com/" . $_SESSION['uid1']. "?fields=picture.width(140).height(120),first_name";
@@ -93,48 +64,29 @@
             //create image with the dummy
             $originalImage = imagecreatefrompng($path);
             // get jpeg images converted to png
-            $u1 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?l=".$a);
-            $u2 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?l=".$b);
+            $u1 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?link=".$a);
+            $u2 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?link=".$b);
 
             if(imagecopymerge($originalImage, $u1, 45, 70, 0, 0, imagesx($u1), imagesy($u1), 100) && imagecopymerge($originalImage,$u2, 715, 260,0, 0, imagesx($u2), imagesy($u2), 100)){
-                $fontcolor = imagecolorallocate( $originalImage, $textred,$textgreen,$textblue);
-                ### Get exact dimensions of text string
-                $box = @imageTTFBbox($fontsize,$fontangle,$font,$text);
-                ### Get width of text from dimensions
-                $textwidth = abs($box[4] - $box[0]);
-                ### Get height of text from dimensions
-                $textheight = abs($box[5] - $box[1]);
-                //text for user1
-                imagettftext ( $originalImage, $fontsize, $fontangle, 45, 50, $fontcolor, $font, $_SESSION['uf1'] );
-                
-                
-                $fontcolor = imagecolorallocate( $originalImage, $textred,$textgreen,$textblue);
-                ### Get exact dimensions of text string
-                $box = @imageTTFBbox($fontsize,$fontangle,$font,$text);
-                ### Get width of text from dimensions
-                $textwidth = abs($box[4] - $box[0]);
-                ### Get height of text from dimensions
-                $textheight = abs($box[5] - $box[1]);
-                //text for user2
-                imagettftext ( $originalImage, $fontsize, $fontangle, 855 - $textwidth, 390, $fontcolor, $font, $_SESSION['uf2'] );
-                /*
-                // add text first name to the image
-                positionText($originalImage, $_SESSION['uf1'], 1);
-                // add text second user name to the
-                positionText($originalImage, $_SESSION['uf2'], 2);*/
-                // random key generator
-                $rand = randomKeyGenerator(5);
-                // image name to be stored in
-                $img_name = "users/".$_SESSION['uid1']."_".$rand.".png";
-                // create the image to that path
-                imagepng($originalImage,$img_name);
-                // destroy the images.
-                imagedestroy($originalImage);
-                imagedestroy($u1);
-                imagedestroy($u2);
+                $n1 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?name=".$_SESSION['uf1']."&pos=1");
+                $n2 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?name=".$_SESSION['uf2']."&pos=2");
+                if(imagecopymerge($originalImage, $n1, 45, 20, 0, 0, imagesx($n1), imagesy($n1), 100) && imagecopymerge($originalImage,$n2, 465, 390,0, 0, imagesx($n2), imagesy($n2), 100)){
+                    // random key generator
+                    $rand = randomKeyGenerator(5);
+                    // image name to be stored in
+                    $img_name = "users/".$_SESSION['uid1']."_".$rand.".png";
+                    // create the image to that path
+                    imagepng($originalImage,$img_name);
+                    // destroy the images.
+                    imagedestroy($originalImage);
+                    imagedestroy($u1);
+                    imagedestroy($u2);
 
-                //echo the image name to the ajax
-                echo $img_name;
+                    //echo the image name to the ajax
+                    echo $img_name;
+                } else{
+                    
+                }
 
             } else{
                 // above snippet was not executed and merge was not successfull
