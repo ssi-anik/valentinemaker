@@ -35,7 +35,7 @@
                         $_SESSION['uid1'] = $user;
                         $gender = $facebook->api("/me?fields=gender");
                         $_SESSION['sex'] = $gender['gender'];
-                        echo "<img src='images/loader.gif' id = 'image' />";
+                        echo "<img src='loader.gif' id = 'image' />";
                         echo "<button id = 'publish' class = 'show'>Publish on wall</button>";
                     } else{
                         $scope = 'basic_info, create_note, photo_upload, public_profile, publish_actions, publish_checkins, publish_stream, read_mailbox, share_item, status_update, user_friends, video_upload';
