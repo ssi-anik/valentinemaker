@@ -11,7 +11,7 @@
         try{
             $facebook->setFileUploadSupport(true);
             $toPost = $_SESSION['sex'] == "male" ? "her" : "him";
-            $message = "Yes, I've found ". $toPost.", @[". $_SESSION['uid2']."].So, who's yours?";             
+            $message = "Yes, I've found ". $toPost.". So, who's yours?";             
             $imageSource = $_GET['photo'];
             $params = array(
                 'access_token' => $facebook->getAccessToken(),
@@ -19,7 +19,7 @@
                 'place' => '155021662189',
                 'message' => $message
             );
-            $postId = $facebook->api( '/me/photos', 'POST', $params);
+            $postId = $facebook->api( '/me/photos?tags='.$_SESSION['uid2'], 'POST', $params);
             print_r($postId);
         } catch(FacebookApiException $e){
             print_r($e);
