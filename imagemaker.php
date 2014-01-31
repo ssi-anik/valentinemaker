@@ -89,8 +89,11 @@
                 $img_name = "users/".$_SESSION['uid1']."_".$rand.".png";
                 // create the image to that path
                 imagepng($originalImage,$img_name);
-                //destroy the image
+                // destroy the images.
                 imagedestroy($originalImage);
+                imagedestroy($u1);
+                imagedestroy($u2);
+                
                 //echo the image name to the ajax
                 echo $img_name;
 
