@@ -85,7 +85,7 @@
                     //echo the image name to the ajax
                     echo $img_name;
                 } else{
-                    
+                    echo "image creation with text error";
                 }
 
             } else{
