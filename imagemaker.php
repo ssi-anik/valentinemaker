@@ -1,5 +1,12 @@
 <?php
     session_start();
+    //font init
+    $textred = 102;
+    $textgreen = 153;
+    $textblue = 153;
+    $fontsize = "30";
+    $fontangle = "0";
+    $font = "Chewy.ttf";
     // add from 0 to 9, A to Z, and a to z
     $a = array_merge(range(0,9),range('A','Z'),range('a','z'));
     function randomKeyGenerator($length){
@@ -19,27 +26,27 @@
 
     // the function adds the text to the image
     /*function positionText(&$originalImage, $text, $who){
-        $textred = 102;
-        $textgreen = 153;
-        $textblue = 153;
-        $fontsize = "30";
-        $fontangle = "0";
-        $font = "Chewy.ttf";
+    $textred = 102;
+    $textgreen = 153;
+    $textblue = 153;
+    $fontsize = "30";
+    $fontangle = "0";
+    $font = "Chewy.ttf";
 
-        ### Declare image's text color
-        $fontcolor = imagecolorallocate( $originalImage, $textred,$textgreen,$textblue);
-        ### Get exact dimensions of text string
-        $box = @imageTTFBbox($fontsize,$fontangle,$font,$text);
-        ### Get width of text from dimensions
-        $textwidth = abs($box[4] - $box[0]);
-        ### Get height of text from dimensions
-        $textheight = abs($box[5] - $box[1]);
-        ###place text 
-        if($who == 1){
-            imagettftext ( $originalImage, $fontsize, $fontangle, 45, 50, $fontcolor, $font, $text );
-        } else{
-            imagettftext ( $originalImage, $fontsize, $fontangle, 855 - $textwidth, 390, $fontcolor, $font, $text );
-        }
+    ### Declare image's text color
+    $fontcolor = imagecolorallocate( $originalImage, $textred,$textgreen,$textblue);
+    ### Get exact dimensions of text string
+    $box = @imageTTFBbox($fontsize,$fontangle,$font,$text);
+    ### Get width of text from dimensions
+    $textwidth = abs($box[4] - $box[0]);
+    ### Get height of text from dimensions
+    $textheight = abs($box[5] - $box[1]);
+    ###place text 
+    if($who == 1){
+    imagettftext ( $originalImage, $fontsize, $fontangle, 45, 50, $fontcolor, $font, $text );
+    } else{
+    imagettftext ( $originalImage, $fontsize, $fontangle, 855 - $textwidth, 390, $fontcolor, $font, $text );
+    }
     }*/
     require 'php-sdk/facebook.php';
     $facebook = new Facebook( array (
