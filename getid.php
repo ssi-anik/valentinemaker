@@ -8,6 +8,7 @@
         )
     );
     $user = $facebook->getUser();
+    echo $user;
 
     if(isset($_SESSION['uid1']) && isset($_SESSION['sex']) && $user){
         try{
