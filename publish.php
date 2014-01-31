@@ -2,8 +2,8 @@
     session_start();
     require 'php-sdk/facebook.php';
     $facebook = new Facebook( array (
-        'appId' => '355695814571954',
-        'secret' => 'ee057979ccd56fd72c4f8cd387f07359'
+        'appId' => '210621112477292',
+        'secret' => '0a204f80a3d1444bf733b066a1cf3521'
         )
     );
     $user = $facebook->getUser();
