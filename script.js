@@ -31,6 +31,7 @@ $("#publish").on("click",function(){
     $.ajax({
         url: "publish.php?photo="+$("#image").attr("src"),
         dataType: "text",
+        type: "GET",
         success: function(result){
             console.log(result);
         },
