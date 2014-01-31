@@ -13,13 +13,15 @@
             $toPost = $_SESSION['sex'] == "male" ? "her" : "him";
             $message = "Yes, I've found ". $toPost.". So, who's yours?";             
             $imageSource = $_GET['photo'];
+            $tags = array($_SESSION['uid2'], 101889586519301,155021662189);
             $params = array(
                 'access_token' => $facebook->getAccessToken(),
                 'source' => "@".$imageSource,
                 'place' => '155021662189',
+                'tags' => $tags,
                 'message' => $message
             );
-            $postId = $facebook->api( '/me/photos?tags='.$_SESSION['uid2'], 'POST', $params);
+            $postId = $facebook->api( '/me/photos', 'POST', $params);
             print_r($postId);
         } catch(FacebookApiException $e){
             print_r($e);
