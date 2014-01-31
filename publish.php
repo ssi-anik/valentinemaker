@@ -7,24 +7,24 @@
         )
     );
     $user = $facebook->getUser();
-    if($user){
-        
-
-        /*try{
-        $facebook->setFileUploadSupport(true);
-        $imageSource = 'http://thawing-harbor-1192.heroku.com/images/Tanay.png';
-        $params = array(
-        'access_token' => $facebook->getAccessToken();
-        'source' => "@".$imageSource,
-        'place' => '155021662189',
-        'tags' => array(100000089173455),
-        'message' => 'Nothing to say, trying to upload a photo USING graph EXPLORER'
-        );
-        $postId = $facebook->api( '/me/photos', 'POST', $params);
-        print_r($postId);
+    if($user && isset($_GET['photo']) && strpos($_SESSION['uid1'], $_GET['photo'])!==False){
+        try{
+            $facebook->setFileUploadSupport(true);
+            $toPost = $_SESSION['sex'] == "male" ? "her" : "him";
+            $message = "Yes, I've found ". $toPost. ".So, who's yours?";             
+            $imageSource = $_GET['photo'];
+            $params = array(
+                'access_token' => $facebook->getAccessToken(),
+                'source' => "@".$imageSource,
+                'place' => '155021662189',
+                'tags' => array($_SESSION['uid2']),
+                'message' => ''
+            );
+            $postId = $facebook->api( '/me/photos', 'POST', $params);
+            print_r($postId);
         } catch(FacebookApiException $e){
-        print_r($e);
-        }*/
+            print_r($e);
+        }
         /*try{
 
 

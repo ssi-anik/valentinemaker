@@ -26,48 +26,65 @@ function successFn(result){
 function errorFn(xhr, status, statusErr){
     console.log(xhr + "\n" + status + "\n" + statusErr);
 }
+
+$("#publish").on("click",function(){
+    $.ajax({
+        url: "publish.php?photo="+$("#image").attr("src"),
+        dataType: "text",
+        success: function(result){
+            console.log(result);
+        },
+        error: function(xhr, status, statusErr){
+            console.log(xhr + "\n" + status + "\n" + statusErr);
+        },
+        complete: function(xhr,status){
+            //completed;
+        }
+
+    });
+});
 /*   
 function successFn(result){
-    if(result == "Success"){
-        $.ajax({
-            //another ajax call for image load
-            url: 'imagemaker.php',
-            type: 'POST',
-            dataType: 'text',
-            success: function(result){
-                if(isNaN(result)){
-                    $("#image").attr("src",result);
-                    $("#image").load(function(){
-                        $("#publish").show().text("Publish on my wall");
-                    });
-                } else{
-                    errorFn(result,"status","StatusErr");
-                }
-            },
-            error: errorFn,
-            complete: function(xhr,status){
-                // i again have nothing to do with this, 
-                // because i've actually nothing to do :D :p
-            }
-        });
-    } else if(result == "Homo"){
-        $("#image").attr("src","images/homo.png");
-        $("#publish").show().text("Publish on my wall");
-    } else{
-        $("#image").attr("src","images/error.png");
-        $("#publish").show().prop("disabled",true).text("Error Occured");
-    }
+if(result == "Success"){
+$.ajax({
+//another ajax call for image load
+url: 'imagemaker.php',
+type: 'POST',
+dataType: 'text',
+success: function(result){
+if(isNaN(result)){
+$("#image").attr("src",result);
+$("#image").load(function(){
+$("#publish").show().text("Publish on my wall");
+});
+} else{
+errorFn(result,"status","StatusErr");
+}
+},
+error: errorFn,
+complete: function(xhr,status){
+// i again have nothing to do with this, 
+// because i've actually nothing to do :D :p
+}
+});
+} else if(result == "Homo"){
+$("#image").attr("src","images/homo.png");
+$("#publish").show().text("Publish on my wall");
+} else{
+$("#image").attr("src","images/error.png");
+$("#publish").show().prop("disabled",true).text("Error Occured");
+}
 }
 
 function errorFn(xhr, status, statusErr){
-    $("#image").attr("src","images/error.png");
-    $("#publish").show().prop("disabled",true).text("Error Occured");
-    console.log(xhr+"\n"+status+"\n"+statusErr);
+$("#image").attr("src","images/error.png");
+$("#publish").show().prop("disabled",true).text("Error Occured");
+console.log(xhr+"\n"+status+"\n"+statusErr);
 }
 
 
 $("#publish").click(function(){
-    alert("ok");
+alert("ok");
 });
 */
 /*$("#publish").on("click",function(){
