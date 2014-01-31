@@ -57,6 +57,19 @@
     $user = $facebook->getUser();
     if($user && isset($_SESSION['uid1']) && isset($_SESSION['uid2'])){
         try{
+            $request_url ="https://graph.facebook.com/" . $_SESSION['uid1']. "?fields=picture.width(140).height(120),first_name";
+            $requests = file_get_contents($request_url);
+            $data = json_decode($requests);
+            print_r($data);
+            $a = $data->picture->data->url;
+            $_SESSION['uf1'] = $data->first_name;
+            $request_url ="https://graph.facebook.com/" . $_SESSION['uid2']. "?fields=picture.width(140).height(120),first_name";
+            $requests = file_get_contents($request_url);
+            print_r($data);
+            $data = json_decode($requests);
+            $b = $data->picture->data->url;
+            $_SESSION['uf2'] = $data->first_name;
+            /*
             // get the first name of the user
             $request_url ="https://graph.facebook.com/" . $_SESSION['uid1']. "?fields=first_name";
             $requests = file_get_contents($request_url);
@@ -76,7 +89,7 @@
             $request_url ="https://graph.facebook.com/" . $_SESSION['uid2']. "?fields=picture.width(140).height(120)";
             $requests = file_get_contents($request_url);
             $data = json_decode($requests);
-            $b = $data->picture->data->url;
+            $b = $data->picture->data->url;*/
             // original image source
             $path = 'dummy.png';
             //create image with the dummy
