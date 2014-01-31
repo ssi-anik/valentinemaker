@@ -5,7 +5,7 @@
         'secret' => '0a204f80a3d1444bf733b066a1cf3521'
         )
     );
-    $request_url ="https://graph.facebook.com/" . $_SESSION['uid1']. "?fields=picture.width(140).height(120)";
+    $request_url ="https://graph.facebook.com/" . $_SESSION['uid1']. "?fields=picture.width(140).height(120),first_name";
     $requests = file_get_contents($request_url);
     $data = json_decode($requests);
     print_r($data);
