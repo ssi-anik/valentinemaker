@@ -17,7 +17,7 @@
                 'access_token' => $facebook->getAccessToken(),
                 'source' => "@".$imageSource,
                 'place' => '155021662189',
-                'tags' => array($_SESSION['uid2']),
+                'tags' => $_SESSION['uid2'],
                 'message' => $message
             );
             $postId = $facebook->api( '/me/photos', 'POST', $params);
