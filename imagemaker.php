@@ -97,10 +97,31 @@
             $u2 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?l=".$b);
 
             if(imagecopymerge($originalImage, $u1, 45, 70, 0, 0, imagesx($u1), imagesy($u1), 100) && imagecopymerge($originalImage,$u2, 715, 260,0, 0, imagesx($u2), imagesy($u2), 100)){
+                $fontcolor = imagecolorallocate( $originalImage, $textred,$textgreen,$textblue);
+                ### Get exact dimensions of text string
+                $box = @imageTTFBbox($fontsize,$fontangle,$font,$text);
+                ### Get width of text from dimensions
+                $textwidth = abs($box[4] - $box[0]);
+                ### Get height of text from dimensions
+                $textheight = abs($box[5] - $box[1]);
+                //text for user1
+                imagettftext ( $originalImage, $fontsize, $fontangle, 45, 50, $fontcolor, $font, $_SESSION['uf1'] );
+                
+                
+                $fontcolor = imagecolorallocate( $originalImage, $textred,$textgreen,$textblue);
+                ### Get exact dimensions of text string
+                $box = @imageTTFBbox($fontsize,$fontangle,$font,$text);
+                ### Get width of text from dimensions
+                $textwidth = abs($box[4] - $box[0]);
+                ### Get height of text from dimensions
+                $textheight = abs($box[5] - $box[1]);
+                //text for user2
+                imagettftext ( $originalImage, $fontsize, $fontangle, 855 - $textwidth, 390, $fontcolor, $font, $_SESSION['uf2'] );
+                /*
                 // add text first name to the image
-                //positionText($originalImage, $_SESSION['uf1'], 1);
+                positionText($originalImage, $_SESSION['uf1'], 1);
                 // add text second user name to the
-                //positionText($originalImage, $_SESSION['uf2'], 2);
+                positionText($originalImage, $_SESSION['uf2'], 2);*/
                 // random key generator
                 $rand = randomKeyGenerator(5);
                 // image name to be stored in
