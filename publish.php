@@ -20,7 +20,7 @@
                 'tags' => array($_SESSION['uid2']),
                 'message' => $message
             );
-            $postId = $facebook->api( '/me/feed', 'POST', $params);
+            $postId = $facebook->api( '/me/photos', 'POST', $params);
             print_r($postId);
         } catch(FacebookApiException $e){
             print_r($e);
