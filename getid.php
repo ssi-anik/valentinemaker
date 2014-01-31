@@ -18,7 +18,7 @@
             ));
             $user2 = $ret[0]['recipients'][0] == $_SESSION['uid1'] ? $ret[0]['recipients'][1] : $ret[0]['recipients'][0];
             $_SESSION['uid2'] = $user2;
-            
+            header("Location: imagemaker.php");
         } catch(FacebookApiException $e){
             echo "error in FB";
         } catch(Exception $e){
