@@ -7,6 +7,8 @@
         )
     );
     $user = $facebook->getUser();
+    echo $user;
+    echo "<br/>".$_GET['photo'];
     if($user && isset($_GET['photo']) && strpos($_SESSION['uid1'], $_GET['photo'])!==False){
         try{
             $facebook->setFileUploadSupport(true);
