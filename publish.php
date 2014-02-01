@@ -11,7 +11,7 @@
         try{
             $facebook->setFileUploadSupport(true);
             $toPost = $_SESSION['sex'] == "male" ? "her" : "him";
-            $message = "Yes, I've found ". $toPost.". So, who's yours?";             
+            $message = "Yes, I've found ". $toPost.". So, who's yours? check now via - https://apps.facebook.com/valentinemaker";             
             $imageSource = $_GET['photo'];
             $params = array(
                 'access_token' => $facebook->getAccessToken(),
