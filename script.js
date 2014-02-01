@@ -49,22 +49,3 @@ $("#publish").on("click",function(){
     });
 });
 
-$(window).bind("beforeunload",function(){
-    del();
-});
-function del(){
-    $.ajax({
-        url: 'delete.php?src='+$("#image").attr("src"),
-        dataType: 'text',
-        type: 'get',
-        success: function(result){
-            //
-        },
-        error: function(xhr, status, statusErr){
-            //
-        },
-        complete: function(xhr, status){
-            //
-        }
-    });
-}
