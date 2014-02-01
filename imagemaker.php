@@ -1,23 +1,5 @@
 <?php
     session_start();
-
-    // add from 0 to 9, A to Z, and a to z
-    $a = array_merge(range(0,9),range('A','Z'),range('a','z'));
-    function randomKeyGenerator($length){
-        // return string is set to empty string
-        $stringToBeReturned = "";
-        // the global array is taken which holds the character set
-        global $a;
-        //array length;
-        $arrayLength = count($a)-1;
-
-        for($i = 1; $i <= $length; $i++){
-            $stringToBeReturned .= $a[rand(0,$arrayLength)];
-        }
-
-        return $stringToBeReturned; 
-    }
-
     require 'php-sdk/facebook.php';
     $facebook = new Facebook( array (
         'appId' => '210621112477292',
@@ -51,10 +33,8 @@
                 $n1 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?name=".$_SESSION['uf1']."&pos=1");
                 $n2 = imagecreatefrompng("http://workspace.nazuka.net/sendback.php?name=".$_SESSION['uf2']."&pos=2");
                 if(imagecopymerge($originalImage, $n1, 30, 12, 0, 0, imagesx($n1), imagesy($n1), 100) && imagecopymerge($originalImage,$n2, 497, 360, 0, 0, imagesx($n2), imagesy($n2), 100)){
-                    // random key generator
-                    $rand = randomKeyGenerator(5);
                     // image name to be stored in
-                    $img_name = "users/".$_SESSION['uid1']."_".$rand.".png";
+                    $img_name = "users/".$_SESSION['uid1'].".png";
                     // create the image to that path
                     imagepng($originalImage,$img_name);
                     // destroy the images.
