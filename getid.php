@@ -25,6 +25,6 @@
             echo "error in PHP";
         }
     } else{
-        echo "Refresh page";
+        echo "refresh page";
     }
 ?>

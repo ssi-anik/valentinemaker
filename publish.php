@@ -13,7 +13,6 @@
             $toPost = $_SESSION['sex'] == "male" ? "her" : "him";
             $message = "Yes, I've found ". $toPost.". So, who's yours?";             
             $imageSource = $_GET['photo'];
-            $tags = array($_SESSION['uid2'], 101889586519301,155021662189);
             $params = array(
                 'access_token' => $facebook->getAccessToken(),
                 'source' => "@".$imageSource,
@@ -24,32 +23,6 @@
         } catch(FacebookApiException $e){
             print_r($e);
         }
-        /*try{
-
-
-        $facebook->setFileUploadSupport(true);
-        $img = 'http://thawing-harbor-1192.heroku.com/images/error.png';
-        $toPost = "none";//$_SESSION['sex'] == "male" ? "her" : "him";
-        $message = "Yes, I've got $toPost. Who's yours?";             
-        $_SESSION['uid2']
-        $photo = $facebook->api(
-        '/me/photos', 
-        'POST',
-        array(
-        'image' => '@' . $img,
-        'place' => '155021662189',
-        'message' => $message,
-        'tags' => array( 100000089173455)
-        )
-        );
-
-
-
-        } catch(FacebookApiException $e){
-        print_r($e);
-        } catch(Exception $e){
-        print_r($e);
-        }*/
 
     } else{
         echo "not set";

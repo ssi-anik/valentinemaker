@@ -38,27 +38,7 @@
             $data = json_decode($requests);
             $b = $data->picture->data->url;
             $_SESSION['uf2'] = $data->first_name;
-            /*
-            // get the first name of the user
-            $request_url ="https://graph.facebook.com/" . $_SESSION['uid1']. "?fields=first_name";
-            $requests = file_get_contents($request_url);
-            $data = json_decode($requests);
-            $_SESSION['uf1'] = $data->first_name;
-            //get the image of the user
-            $request_url ="https://graph.facebook.com/" . $_SESSION['uid1']. "?fields=picture.width(140).height(120)";
-            $requests = file_get_contents($request_url);
-            $data = json_decode($requests);
-            $a = $data->picture->data->url;
-            //get the first name of the second user
-            $request_url ="https://graph.facebook.com/" . $_SESSION['uid2']. "?fields=first_name";
-            $requests = file_get_contents($request_url);
-            $data = json_decode($requests);
-            $_SESSION['uf2'] = $data->first_name;
-            //get the image of the second user
-            $request_url ="https://graph.facebook.com/" . $_SESSION['uid2']. "?fields=picture.width(140).height(120)";
-            $requests = file_get_contents($request_url);
-            $data = json_decode($requests);
-            $b = $data->picture->data->url;*/
+            
             // original image source
             $path = 'dummy.png';
             //create image with the dummy
